@@ -74,7 +74,8 @@ class Pal:
                     .isoformat(timespec="milliseconds") \
                     .replace("+00:00", 'Z')
 
-                if updated_at < parse_utc(curr_iso_str):
+                # Currently never saves index, this is for testing
+                if updated_at < parse_utc(curr_iso_str):  # TODO: Fix logic
                     continue
 
                 outfile.write(f"{uid},{parse_utc(updated_at)}\n")
@@ -101,7 +102,12 @@ class Pal:
                        .replace("+00:00", 'Z')
 
         # Take = How many events to recieve from api
-        params = {"afterDate": time, "take": MAX_REQUESTS}
+        params = {
+            "afterDate": time,
+            "take": MAX_REQUESTS,
+            "orderBy": "startDate",
+        }
+
         response = requests.get(BASE_API + "/events", params=params)
 
         data = response.json()
