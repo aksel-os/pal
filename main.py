@@ -18,11 +18,10 @@ def main():
 
         if not new_events:
             logger.info("No new events")
-            return
 
-        post_all_events(new_events)
-
-        pal.persist_index()
+        else:
+            post_all_events(new_events)
+            pal.persist_index()
 
         sleep(60)
 
