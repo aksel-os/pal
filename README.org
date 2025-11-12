@@ -1,7 +1,7 @@
 #+title: Pal - Peoply Action Listener
 #+author: Aksel Olav Steen
 
-Pal is a simple tool designed to track events posted to [[peoply.app]], and post
+Pal is a simple tool designed to track events posted to [[https://peoply.app][Peoply]], and post
 them to a given discord channel.
 
 * Introduction
