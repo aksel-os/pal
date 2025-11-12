@@ -26,7 +26,7 @@ them to a given discord channel.
   python3 -m venv .venv
   source .venv/bin/activate
   pip install -r requirements.txt
-  echo "layout python3" > .envrc && direnv allow
+  echo "export VIRTUAL_ENV='.venv'\nlayout python3" > .envrc && direnv allow
   #+end_src
 
 * Usage
