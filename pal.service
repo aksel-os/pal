@@ -1,0 +1,14 @@
+# https://github.com/torfsen/python-systemd-tutorial/
+
+[Unit]
+Description=Pal service
+
+[Service]
+ExecStart=/usr/bin/python3 /usr/local/lib/pal/main.py
+
+Restart=on-failure
+
+User=pal
+
+[Install]
+WantedBy=default.target
