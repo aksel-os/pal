@@ -28,38 +28,26 @@ def build_event_embed(event):
         ],
         "footer": {
             "text": "Peoply event",
-            # "icon_url": event.image,
+            # "icon_url": event.icon,
         },
-        # "thumbnail": {},
         "image": {"url": event.image},
     }
+
+    if event.capacity is not None:
+        embed["fields"].append(
+            {"name": "Capacity", "value": event.capacity, "inline": True},
+        )
 
     return embed
 
 
-def build_link_button(url, label="View on Peoply"):
-    return {
-        "type": 1,  # Action button
-        "components": [
-            {
-                "type": 2,  # Button
-                "style": 5,
-                "label": label,
-                "url": url,
-            }
-        ]
-    }
-
-
 def build_event_webhook(event):
     embed = build_event_embed(event)
-    button = build_link_button(event.url)
 
     content = {
         "username": "Peoply Event Bot",
         "avatar_url": "https://peoply.app/icons/favicon-32x32.png",
         "embeds": [embed],
-        "components": [button],
     }
 
     return content
