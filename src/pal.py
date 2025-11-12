@@ -69,12 +69,19 @@ class Pal:
     def _save_events(self):
         with open(self._event_database, 'w') as outfile:
             for uid, updated_at in self._already_indexed.items():
-                outfile.write(f"{uid},{updated_at}\n")
+                curr_iso_str = datetime.now(timezone.utc) \
+                    .isoformat(timespec="milliseconds") \
+                    .replace("+00:00", 'Z')
+
+                if updated_at < parse_utc(curr_iso_str):
+                    continue
+
+                outfile.write(f"{uid},{parse_utc(updated_at)}\n")
 
     def _update_index(self, uid, updated_at):
         prev = self._already_indexed.get(uid)
 
-        if prev is None or updated_at > parse_utc(prev):
+        if prev is None or updated_at > prev:
             self._already_indexed[uid] = updated_at
             self._log(
                 "info",
