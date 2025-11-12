@@ -1,3 +1,5 @@
+# Pinned to latest unstable branch on 11.11.2025
+
 let
   pkgs =
     import
@@ -9,8 +11,6 @@ pkgs.mkShell {
   packages = with pkgs; [
     python312
     python312Packages.requests
-    python312Packages.dateutils
     python312Packages.python-dotenv
-    python312Packages.discordpy
   ];
 }
