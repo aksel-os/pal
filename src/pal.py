@@ -6,7 +6,6 @@ from dataclasses import dataclass
 
 BASE_URL = "https://peoply.app"
 BASE_API = "https://api.peoply.app"
-TWENTY_SECONDS = 20
 
 
 def parse_utc(iso_str):
@@ -45,7 +44,11 @@ class Pal:
         if self._logger:
             getattr(self._logger, level, self._logger.info)(msg)
 
-# Indexed events
+################################
+#                              #
+#        Indexed Events        #
+#                              #
+################################
 
     def indexed_events(self, event_database):
         indexed = {}
@@ -78,14 +81,18 @@ class Pal:
                 f"Index updated for event {uid} -> {updated_at}"
             )
 
-# Fetch events
+################################
+#                              #
+#         Fetch Events         #
+#                              #
+################################
 
     def fetch_events(self, max_events=20):
         time = datetime.now(timezone.utc) \
                        .isoformat(timespec="milliseconds") \
                        .replace("+00:00", 'Z')
 
-        # How many events to recieve from api
+        # Take = How many events to recieve from api
         params = {"afterDate": time, "take": max_events}
         response = requests.get(BASE_API + "/events", params=params)
 
@@ -98,7 +105,11 @@ class Pal:
 
         return data
 
-# Helpers
+################################
+#                              #
+#           Helpers            #
+#                              #
+################################
 
     def _is_indexed(self, event):
         uid = event.get("id")
@@ -192,8 +203,6 @@ def main():
 
     for event in data:
         print(event)
-
-    # print(json.dumps(data, indent=2, ensure_ascii=False, sort_keys=False))
 
 
 if __name__ == "__main__":
