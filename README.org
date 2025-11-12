@@ -1,0 +1,31 @@
+#+title: Pal - Peoply Action Listener
+#+author: Aksel Olav Steen
+
+Pal is a simple tool designed to track events posted to [[peoply.app]], and post
+them to a given discord channel.
+
+* Introduction
+  Pal is pal.
+
+* Setup
+  Echo the webhook to a =.env= file in the root directory.
+
+  #+begin_src sh
+  echo "DISCORD_WEBHOOK_URL=<webhook_url>" > .env
+  #+end_src
+
+  Make sure =direnv= uses the provided =shell.nix=.
+
+  #+begin_src sh
+  echo "use nix" > .envrc && direnv allow
+  #+end_src
+
+* Usage
+  To start Pal, run the provided =main.py=.
+
+  #+begin_src sh
+  python3 main.py
+  #+end_src
+
+* License
+  This project is licensed under the MIT License.
