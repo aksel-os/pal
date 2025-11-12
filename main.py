@@ -17,7 +17,7 @@ def main():
         new_events = pal.get_new_public_events()
 
         if not new_events:
-            logger.info("No new events.")
+            logger.info("No new events")
             return
 
         post_all_events(new_events)
