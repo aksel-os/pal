@@ -30,10 +30,20 @@ them to a given discord channel.
   #+end_src
 
 * Usage
-  To start Pal, run the provided =main.py=.
+  To start Pal as a "standalone", run the provided =main.py=.
 
   #+begin_src sh
   python3 main.py
+  #+end_src
+
+  To start Pal as a systemd service, do the following.
+
+  #+begin_src sh
+  # Start the service
+  systemctl --user start pal.service
+
+  # Auto startup
+  systemctl --user enable pal.service
   #+end_src
 
 * License
