@@ -6,6 +6,7 @@ from dataclasses import dataclass
 
 BASE_URL = "https://peoply.app"
 BASE_API = "https://api.peoply.app"
+MAX_REQUESTS = 42
 
 
 def parse_utc(iso_str):
@@ -94,13 +95,13 @@ class Pal:
 #                              #
 ################################
 
-    def fetch_events(self, max_events=20):
+    def fetch_events(self):
         time = datetime.now(timezone.utc) \
                        .isoformat(timespec="milliseconds") \
                        .replace("+00:00", 'Z')
 
         # Take = How many events to recieve from api
-        params = {"afterDate": time, "take": max_events}
+        params = {"afterDate": time, "take": MAX_REQUESTS}
         response = requests.get(BASE_API + "/events", params=params)
 
         data = response.json()
