@@ -20,6 +20,15 @@ them to a given discord channel.
   echo "use nix" > .envrc && direnv allow
   #+end_src
 
+  Alternatively, use =pip= /yuck/.
+
+  #+begin_src sh
+  python3 -m venv .venv
+  source .venv/bin/activate
+  pip install -r requirements.txt
+  echo "layout python3" > .envrc && direnv allow
+  #+end_src
+
 * Usage
   To start Pal, run the provided =main.py=.
 
