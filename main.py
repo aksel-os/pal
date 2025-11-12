@@ -23,7 +23,7 @@ def main():
             post_all_events(new_events)
             pal.persist_index()
 
-        sleep(60)
+        sleep(60 * 5)
 
 
 if __name__ == "__main__":
